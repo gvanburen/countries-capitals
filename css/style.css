@@ -1,0 +1,50 @@
+body {
+	font-family: 'Helvetica', sans-serif;
+}
+
+.ghost-button {
+	display: inline-block;
+  	width: 175px;
+  	padding: .3em;
+  	color: #fff;
+  	background-color: transparent;
+  	border: 2px solid grey;
+  	border-radius: 5px;
+  	text-align: center;
+  	outline: none;
+  	text-decoration: none;
+  	transition: color 0.5s ease-out,
+              background-color 0.5s ease-out,
+              border-color 0.5s ease-out;
+}
+
+.ghost-button:hover,
+.ghost-button:active {
+	background-color: #778899;
+  	border-color: #778899;
+  	color: grey;
+  	transition: color 0.3s ease-in,
+              background-color 0.3s ease-in,
+              border-color 0.3s ease-in;
+}
+
+.ghost-button > a{
+	text-decoration: none;
+}
+
+.countryTable {
+    border-collapse: collapse;
+}
+
+.countryTable, th, td {
+    border: 1px solid black;
+}
+
+th {
+	background-color: grey;
+	color: white;
+}
+
+tr:nth-child(even){
+	background-color: mintcream;
+}
