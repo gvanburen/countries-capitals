@@ -7,7 +7,7 @@
 		<th>Population</th>
 		<th>Continent</th>
 	</tr>
-	<tr ng-repeat="country in countries" ng-href="#/{{ country.countryName }}/capital">
+	<tr ng-repeat="country in countries" ng-click="go(country.countryName)">
 		<td>{{ country.countryName }}</td>
 		<td>{{ country.countryCode }}</td>
 		<td>{{ country.capital }}</td>

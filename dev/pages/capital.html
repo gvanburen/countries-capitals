@@ -1,4 +1,4 @@
-<h1>{{ country.name }}</h1>
+<h1>{{ countryName }}</h1>
 <p>Population of Country: {{}}</p>
 <p>Area: {{}}</p>
 <p>Capital: {{}}</p>
@@ -8,5 +8,5 @@
 <img ng-src="http://www.geonames.org/flags/x/{{ country.code }}.gif"/>
 <img ng-src="http://www.geonames.org/img/country/250/{{ country.code }}.png"/>
 
-<button type="submit">Home</button>
-<button type="submit">Browse Countries</button>
+<a href="#/"><button class="ghost-button">Home</button></a>
+<a href="#/countries"><button class="ghost-button">Browse Countries</button></a>

@@ -6,7 +6,7 @@ body {
 	display: inline-block;
   	width: 175px;
   	padding: .3em;
-  	color: #fff;
+  	color: black;
   	background-color: transparent;
   	border: 2px solid grey;
   	border-radius: 5px;
@@ -22,10 +22,14 @@ body {
 .ghost-button:active {
 	background-color: #778899;
   	border-color: #778899;
-  	color: grey;
+  	color: white;
   	transition: color 0.3s ease-in,
               background-color 0.3s ease-in,
               border-color 0.3s ease-in;
+}
+
+.ghost-button:visited {
+	color: white;
 }
 
 .ghost-button > a{

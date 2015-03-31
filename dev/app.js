@@ -7,30 +7,34 @@ angular.module('app',['ngRoute','ngAnimate'])
 		})
 		.when('/countries',{
 			templateUrl: '../dev/pages/countries.html',
-			controller: 'countryCtrl'
+			controller: 'countryCtrl as alias'
 		})
 		.when('/countries/:country/capital',{
 			templateUrl: '../dev/pages/capital.html',
 			controller: 'capitalCtrl'
-		});
+		})
+		.when('/error', {
+			template: '<p>There was an error</p>'
+		})
+		.otherwise('/error');
 	}])
 	.controller('mainCtrl',['$scope', function($scope){
-		$scope.test = "hello";
+
 	}])
-	.controller('countryCtrl',['$scope', '$http', function($scope, $http){
+	.controller('countryCtrl',['$rootScope','$scope', '$http', '$location', function($rootScope, $scope, $http, $location){
 		$http.get('http://api.geonames.org/countryInfoJSON?username=gvanburen')
 		.success(function(data){
-			$scope.countries = data.geonames;
+			$rootScope.countries = data.geonames;
 		})
 		.error(function(){
-			alert("you failed!")
-			console.log("bummer");
 		})
-		$scope.setSelected = function() {
-	        $scope.selected = this.countries;
-	        console.log($scope.selected);
-    	};
+		//get url to update to country selected
+		$scope.go = function() {
+			$scope.go = function(url){
+				$location.path('countries/' + url + '/capital');
+			}
+		}
 	}])
-	.controller('capital',['$scope', function($scope){
-		$http.get('http://api.geonames.org/searchJSON?q=london&username=gvanburen')
+	.controller('capital',['$rootScope', '$scope', function($routeScope, $scope){
+		//http for neighbors and capital
 	}])
