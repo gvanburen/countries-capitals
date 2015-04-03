@@ -9,7 +9,7 @@ angular.module('app',['ngRoute','ngAnimate'])
 			templateUrl: '../dev/pages/countries.html',
 			controller: 'countryCtrl'
 		})
-		.when('/countries/:country/:capital',{
+		.when('/countries/:country',{
 			templateUrl: '../dev/pages/capital.html',
 			controller: 'capitalCtrl'
 		})
@@ -21,8 +21,6 @@ angular.module('app',['ngRoute','ngAnimate'])
 	.controller('mainCtrl',['$scope', function($scope){
 	}])
 	.controller('countryCtrl',['$rootScope','$scope', '$http', '$location', '$templateCache', function($rootScope, $scope, $http, $location, $templateCache){
-		$rootScope.countryPopulation;
-		$rootScope.countryArea;
 		$templateCache.put('countries.html');
 		$http.get('http://api.geonames.org/countryInfoJSON?username=gvanburen')
 		.success(function(data){
@@ -35,30 +33,26 @@ angular.module('app',['ngRoute','ngAnimate'])
 	.controller('capitalCtrl',['$scope','$http', '$routeParams', '$rootScope', function($scope, $http, $routeParams, $rootScope){
 		//http for neighbors and capital
 		$scope.country = $routeParams.country;
-		$scope.capital = $routeParams.capital;
+		//$scope.capital = $routeParams.capital;
 
-		$http.get('http://api.geonames.org/searchJSON?q=' + $scope.capital + '&countryBias=' + $scope.country + '&orderby=relavance&maxRows=1&username=gvanburen')
-		.success(function(searchData){
-			$scope.countryCode = searchData.geonames[0].countryCode;
-			$scope.capitalPop = searchData.geonames[0].population;
-			$http.get('http://api.geonames.org/neighboursJSON?country=' + $scope.countryCode + '&username=gvanburen')
-				.success(function(helloNeighbor){
-					$scope.neighbors = helloNeighbor.geonames;
-					var heyNeigh = $scope.neighbors;
-					console.log(heyNeigh);
-				})
+		$http.get('http://api.geonames.org/countryInfoJSON?country=' + $scope.country + '&username=gvanburen')
+		.success(function(results){
+			console.log(results);
+			$scope.selectedCountry = results.geonames[0];
+			//Find a way to get all information
+			//Possibly use the original API for just the specific country
+			$http.get('http://api.geonames.org/searchJSON?q=' + $scope.selectedCountry.capital + '&countryBias=' + $scope.country + '&orderby=relavance&maxRows=1&username=gvanburen')
+			.success(function(searchData){
+				//$scope.countryCode = searchData.geonames[0].countryCode;
+				$scope.capitalPop = searchData.geonames[0].population;
+				$http.get('http://api.geonames.org/neighboursJSON?country=' + $scope.country + '&username=gvanburen')
+					.success(function(helloNeighbor){
+						$scope.neighbors = helloNeighbor.geonames;
+						var heyNeigh = $scope.neighbors;
+						console.log(heyNeigh);
+					})
+			})
 		})
 	}])
-
-
-
-
-
-
-
-
-
-
-
 
 

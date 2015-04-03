@@ -9,12 +9,12 @@
 		<th>Continent</th>
 	</tr>
 	<tr ng-repeat="country in countries" ng-click="countryPopulation=country.population; countryArea=country.areaInSqKm">
-		<td><a ng-href="./#/countries/{{country.countryName}}/{{country.capital}}">{{ country.countryName }}</a></td>
-		<td><a ng-href="./#/countries/{{country.countryName}}/{{country.capital}}">{{ country.countryCode }}</a></td>
-		<td><a ng-href="./#/countries/{{country.countryName}}/{{country.capital}}">{{ country.capital }}</a></td>
-		<td><a ng-href="./#/countries/{{country.countryName}}/{{country.capital}}">{{ country.areaInSqKm | number }}</a></td>
-		<td><a ng-href="./#/countries/{{country.countryName}}/{{country.capital}}">{{ country.population | number }}</a></td>
-		<td><a ng-href="./#/countries/{{country.countryName}}/{{country.capital}}">{{ country.continentName }}</a></td>
+		<td><a ng-href="./#/countries/{{country.countryCode}}">{{ country.countryName }}</a></td>
+		<td><a ng-href="./#/countries/{{country.countryCode}}">{{ country.countryCode }}</a></td>
+		<td><a ng-href="./#/countries/{{country.countryCode}}">{{ country.capital }}</a></td>
+		<td><a ng-href="./#/countries/{{country.countryCode}}">{{ country.areaInSqKm | number }}</a></td>
+		<td><a ng-href="./#/countries/{{country.countryCode}}">{{ country.population | number }}</a></td>
+		<td><a ng-href="./#/countries/{{country.countryCode}}">{{ country.continentName }}</a></td>
 	</tr>
 </table>
 </section>

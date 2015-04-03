@@ -65,9 +65,28 @@ tr:nth-child(even){
 	background-color: mintcream;
 }
 
+.flexbox-container {
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.flexbox-container > div {
+  width: 50%;
+  padding: 10px;
+}
+
+.flexbox-container > div:nth-child(odd){
+  text-align: right;
+}
+
+.flexbox-container > div:nth-child(even){
+  text-align: left;
+}
+
 .neighborly {
-  display:inline-block;
-  margin: 0 0 .5em 0;
+  text-align: left;
+  padding-left:0;
 }
 
 .heyNeighbor {
@@ -76,7 +95,7 @@ tr:nth-child(even){
 
 .capitalImage {
   padding: 0;
-  margin: .2em;
+  margin: .5em .2em 1em .2em;
   width: 150px;
   height: 100px;
 }

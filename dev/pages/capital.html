@@ -1,16 +1,27 @@
-<section class="container">
-<h1>{{ country }}</h1>
-<p>Population of Country: {{ countryPopulation | number }}</p>
-<p>Area: {{ countryArea | number }}</p>
-<p>Capital: {{ capital }}</p>
-<p>Population: {{ capitalPop | number }}</p>
-<p>{{ neighbors.length }} neighbors: </p>
-<ul class="neighborly">
-<li ng-repeat="neighbor in neighbors" class="heyNeighbor"><a ng-href="#/countries/{{neighbor.countryName}}">{{ neighbor.countryName }}</a></li>
-</ul>
-<br>
-<img class="capitalImage" ng-src="http://www.geonames.org/flags/x/{{ countryCode | lowercase }}.gif"/>
-<img class="capitalImage" ng-src="http://www.geonames.org/img/country/250/{{ countryCode | uppercase }}.png"/>
+<h1>{{ selectedCountry.countryName }}</h1>
+<section class="flexbox-container">
+	<div>
+		<p>Population of Country:</p>
+		<p>Area:</p>
+		<p>Capital:</p>
+		<p>Population:</p>
+		<p>{{ neighbors.length }} neighbors: </p>
+	</div>
+	<div>
+		<p>{{ selectedCountry.population | number }}</p>
+		<p>{{ selectedCountry.areaInSqKm | number }} km<sup>2</sup></p>
+		<p>{{ selectedCountry.capital }}</p>
+		<p>{{ capitalPop | number }}<p>
+		<ul class="neighborly">
+			<li ng-repeat="neighbor in neighbors" class="heyNeighbor">
+				<a ng-href="./#/countries/{{neighbor.countryCode}}">{{ neighbor.countryName }}</a>
+			</li>
+		</ul>
+	</div>
 </section>
+<br>
+<img class="capitalImage" ng-src="http://www.geonames.org/flags/x/{{ country | lowercase }}.gif"/>
+<img class="capitalImage" ng-src="http://www.geonames.org/img/country/250/{{ country | uppercase }}.png"/>
+<br><br>
 <a href="#/"><button class="ghost-button">Home</button></a>
 <a href="#/countries"><button class="ghost-button">Browse Countries</button></a>
