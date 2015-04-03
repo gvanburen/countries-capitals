@@ -35,18 +35,13 @@ angular.module('app',['ngRoute','ngAnimate'])
 		$scope.country = $routeParams.country;
 		$scope.capital = $routeParams.capital;
 
-		$scope.selectedCountry;
-		$scope.selectedCountry.capital;
-		$scope.selectedCountry.geonameId;
 		console.log(selectedCountry);
 		console.log(selectedCapital);
-		$http.get('http://api.geonames.org/searchJSON?q=' + selectedCapital + '&countryBias=' + selectedCountry + '&orderby=relavance&maxRows=1&username=gvanburen')
+		$http.get('http://api.geonames.org/searchJSON?q=' + $scope.capital + '&countryBias=' + $scope.country + '&orderby=relavance&maxRows=1&username=gvanburen')
 		.success(function(searchData){
-			console.log(searchData);
+			$scope.countryCode = searchData.geonames[0].countryCode;
 			$scope.capitalPop = searchData.geonames[0].population;
-			var capitalInfo = $scope.capitalPop;
-			console.log(capitalInfo);
-			$http.get('http://api.geonames.org/neighboursJSON?geonameId=' + selectedGeo + '&username=gvanburen')
+			$http.get('http://api.geonames.org/neighboursJSON?country=' + $scope.countryCode + '&username=gvanburen')
 				.success(function(helloNeighbor){
 					$scope.neighbors = helloNeighbor.geonames;
 					var heyNeigh = $scope.neighbors;
