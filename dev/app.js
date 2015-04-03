@@ -21,6 +21,8 @@ angular.module('app',['ngRoute','ngAnimate'])
 	.controller('mainCtrl',['$scope', function($scope){
 	}])
 	.controller('countryCtrl',['$rootScope','$scope', '$http', '$location', '$templateCache', function($rootScope, $scope, $http, $location, $templateCache){
+		$rootScope.countryPopulation;
+		$rootScope.countryArea;
 		$templateCache.put('countries.html');
 		$http.get('http://api.geonames.org/countryInfoJSON?username=gvanburen')
 		.success(function(data){
@@ -30,13 +32,11 @@ angular.module('app',['ngRoute','ngAnimate'])
 			$location.path('/error')
 		})
 	}])
-	.controller('capitalCtrl',['$scope','$http', '$routeParams', function($scope, $http, $routeParams){
+	.controller('capitalCtrl',['$scope','$http', '$routeParams', '$rootScope', function($scope, $http, $routeParams, $rootScope){
 		//http for neighbors and capital
 		$scope.country = $routeParams.country;
 		$scope.capital = $routeParams.capital;
 
-		console.log(selectedCountry);
-		console.log(selectedCapital);
 		$http.get('http://api.geonames.org/searchJSON?q=' + $scope.capital + '&countryBias=' + $scope.country + '&orderby=relavance&maxRows=1&username=gvanburen')
 		.success(function(searchData){
 			$scope.countryCode = searchData.geonames[0].countryCode;
