@@ -6,7 +6,7 @@
 <p>Population: {{ capitalPop | number }}</p>
 <p>{{ neighbors.length }} neighbors: </p>
 <ul class="neighborly">
-<li ng-repeat="neighbor in neighbors" class="heyNeighbor"><a ng-href="#/{{selectedCountry.countryName}}">{{ neighbor.countryName }}</a></li>
+<li ng-repeat="neighbor in neighbors" class="heyNeighbor"><a ng-href="#/countries/{{neighbor.countryName}}">{{ neighbor.countryName }}</a></li>
 </ul>
 <br>
 <img class="capitalImage" ng-src="http://www.geonames.org/flags/x/{{ selectedCountry.countryCode | lowercase }}.gif"/>
