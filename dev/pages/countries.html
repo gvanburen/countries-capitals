@@ -9,12 +9,12 @@
 		<th>Continent</th>
 	</tr>
 	<tr ng-repeat="country in countries" ng-click="go(country)">
-		<td>{{ country.countryName }}</td>
-		<td>{{ country.countryCode }}</td>
-		<td>{{ country.capital }}</td>
-		<td>{{ country.areaInSqKm | number }}</td>
-		<td>{{ country.population | number }}</td>
-		<td>{{ country.continentName }}</td>
+		<td><a ng-href="/countries/{{country.countryName}}/{{country.capital}}">{{ country.countryName }}</a></td>
+		<td><a ng-href="/countries/{{country.countryName}}/{{country.capital}}">{{ country.countryCode }}</a></td>
+		<td><a ng-href="/countries/{{country.countryName}}/{{country.capital}}">{{ country.capital }}</a></td>
+		<td><a ng-href="/countries/{{country.countryName}}/{{country.capital}}">{{ country.areaInSqKm | number }}</a></td>
+		<td><a ng-href="/countries/{{country.countryName}}/{{country.capital}}">{{ country.population | number }}</a></td>
+		<td><a ng-href="/countries/{{country.countryName}}/{{country.capital}}">{{ country.continentName }}</a></td>
 	</tr>
 </table>
 </section>
