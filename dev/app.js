@@ -44,6 +44,7 @@ angular.module('app',['ngRoute','ngAnimate'])
 		var selectedCapital = $scope.selectedCountry.capital;
 		var selectedGeo = $scope.selectedCountry.geonameId;
 		console.log(selectedCountry);
+		console.log(selectedCapital);
 		$http.get('http://api.geonames.org/searchJSON?q=' + selectedCapital + '&countryBias=' + selectedCountry + '&orderby=relavance&maxRows=1&username=gvanburen')
 		.success(function(searchData){
 			console.log(searchData);
