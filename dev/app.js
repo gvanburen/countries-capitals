@@ -30,7 +30,7 @@ angular.module('app',['ngRoute','ngAnimate'])
 			$location.path('/error')
 		})
 	}])
-	.controller('capitalCtrl',['$scope','$http', function($scope, $http){
+	.controller('capitalCtrl',['$scope','$http', '$routeParams', function($scope, $http, $routeParams){
 		//http for neighbors and capital
 		$scope.country = $routeParams.country;
 		$scope.capital = $routeParams.capital;
