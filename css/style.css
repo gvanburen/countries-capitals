@@ -1,10 +1,22 @@
 body {
 	font-family: 'Helvetica', sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.headerFooter {
+  margin: 0 auto;
+}
+
+.container {
+  padding: 0 2em;
+  margin: 0 auto;
 }
 
 .ghost-button {
 	display: inline-block;
-  	width: 175px;
+  	width: 150px;
   	padding: .3em;
   	color: black;
   	background-color: transparent;
@@ -51,4 +63,20 @@ th {
 
 tr:nth-child(even){
 	background-color: mintcream;
+}
+
+.neighborly {
+  display:inline-block;
+}
+
+.heyNeighbor {
+  display:inline-block;
+  list-style: none;
+}
+
+.capitalImage {
+  padding: 0;
+  margin: .2em;
+  width: 150px;
+  height: 100px;
 }

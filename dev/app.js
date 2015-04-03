@@ -7,9 +7,9 @@ angular.module('app',['ngRoute','ngAnimate'])
 		})
 		.when('/countries',{
 			templateUrl: '../dev/pages/countries.html',
-			controller: 'countryCtrl as alias'
+			controller: 'countryCtrl'
 		})
-		.when('/countries/:country/capital',{
+		.when('/countries/:country',{
 			templateUrl: '../dev/pages/capital.html',
 			controller: 'capitalCtrl'
 		})
@@ -18,23 +18,56 @@ angular.module('app',['ngRoute','ngAnimate'])
 		})
 		.otherwise('/error');
 	}])
+	.run(function($rootScope){
+		$rootScope.go;
+	})
 	.controller('mainCtrl',['$scope', function($scope){
-
 	}])
-	.controller('countryCtrl',['$rootScope','$scope', '$http', '$location', function($rootScope, $scope, $http, $location){
+	.controller('countryCtrl',['$rootScope','$scope', '$http', '$location', '$templateCache', function($rootScope, $scope, $http, $location, $templateCache){
+		$templateCache.put('countries.html');
 		$http.get('http://api.geonames.org/countryInfoJSON?username=gvanburen')
 		.success(function(data){
 			$rootScope.countries = data.geonames;
 		})
 		.error(function(){
+			$location.path('/error')
 		})
 		//get url to update to country selected
-		$scope.go = function() {
-			$scope.go = function(url){
-				$location.path('countries/' + url + '/capital');
-			}
+		$rootScope.go = function(url) {
+			$rootScope.selectedCountry = url;
+			$location.path('countries/' + url.countryName);
 		}
 	}])
-	.controller('capital',['$rootScope', '$scope', function($routeScope, $scope){
+	.controller('capitalCtrl',['$scope','$http', function($scope, $http){
 		//http for neighbors and capital
+		var selectedCountry = $scope.selectedCountry;
+		var selectedCapital = $scope.selectedCountry.capital;
+		var selectedGeo = $scope.selectedCountry.geonameId;
+		console.log(selectedCountry);
+		$http.get('http://api.geonames.org/searchJSON?q=' + selectedCapital + '&countryBias=' + selectedCountry + '&orderby=relavance&maxRows=1&username=gvanburen')
+		.success(function(searchData){
+			console.log(searchData);
+			$scope.capitalPop = searchData.geonames[0].population;
+			var capitalInfo = $scope.capitalPop;
+			console.log(capitalInfo);
+			$http.get('http://api.geonames.org/neighboursJSON?geonameId=' + selectedGeo + '&username=gvanburen')
+				.success(function(helloNeighbor){
+					$scope.neighbors = helloNeighbor.geonames;
+					var heyNeigh = $scope.neighbors;
+					console.log(heyNeigh);
+				})
+		})
 	}])
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,12 +1,16 @@
-<h1>{{ countryName }}</h1>
-<p>Population of Country: {{}}</p>
-<p>Area: {{}}</p>
-<p>Capital: {{}}</p>
-<p>Population: {{}}</p>
-<p>3 neighbors: {{}}</p>
+<section class="container"
+<h1>{{ selectedCountry.countryName }}</h1>
+<p>Population of Country: {{ selectedCountry.population | number }}</p>
+<p>Area: {{ selectedCountry.areaInSqKm | number }}</p>
+<p>Capital: {{ selectedCountry.capital }}</p>
+<p>Population: {{ capitalPop | number }}</p>
+<p>{{ neighbors.length }} neighbors: </p>
+<ul class="neighborly">
+<li ng-repeat="neighbor in neighbors" class="heyNeighbor"><a ng-href="#/{{selectedCountry.countryName}}">{{ neighbor.countryName }}</a></li>
+</ul>
 
-<img ng-src="http://www.geonames.org/flags/x/{{ country.code }}.gif"/>
-<img ng-src="http://www.geonames.org/img/country/250/{{ country.code }}.png"/>
-
+<img class="capitalImage" ng-src="http://www.geonames.org/flags/x/{{ selectedCountry.countryCode | lowercase }}.gif"/>
+<img class="capitalImage" ng-src="http://www.geonames.org/img/country/250/{{ selectedCountry.countryCode | uppercase }}.png"/>
+</section>
 <a href="#/"><button class="ghost-button">Home</button></a>
 <a href="#/countries"><button class="ghost-button">Browse Countries</button></a>
