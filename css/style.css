@@ -67,10 +67,10 @@ tr:nth-child(even){
 
 .neighborly {
   display:inline-block;
+  margin: 0 0 .5em 0;
 }
 
 .heyNeighbor {
-  display:inline-block;
   list-style: none;
 }
 
