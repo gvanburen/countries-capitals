@@ -8,7 +8,7 @@
 <ul class="neighborly">
 <li ng-repeat="neighbor in neighbors" class="heyNeighbor"><a ng-href="#/{{selectedCountry.countryName}}">{{ neighbor.countryName }}</a></li>
 </ul>
-
+<br>
 <img class="capitalImage" ng-src="http://www.geonames.org/flags/x/{{ selectedCountry.countryCode | lowercase }}.gif"/>
 <img class="capitalImage" ng-src="http://www.geonames.org/img/country/250/{{ selectedCountry.countryCode | uppercase }}.png"/>
 </section>
