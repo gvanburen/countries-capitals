@@ -18,6 +18,19 @@ angular.module('app',['ngRoute','ngAnimate'])
 		})
 		.otherwise('/error');
 	}])
+	.run(function($rootScope, $location, $timeout) {
+	    $rootScope.$on('$routeChangeError', function() {
+	        $location.path("/error");
+	    });
+	    $rootScope.$on('$routeChangeStart', function() {
+	        $rootScope.isLoading = true;
+	    });
+	    $rootScope.$on('$routeChangeSuccess', function() {
+	      $timeout(function() {
+	        $rootScope.isLoading = false;
+	      },50);
+    	});
+	})
 	.controller('mainCtrl',['$scope', function($scope){
 	}])
 	.controller('countryCtrl',['$rootScope','$scope', '$http', '$location', '$templateCache', function($rootScope, $scope, $http, $location, $templateCache){
@@ -36,17 +49,13 @@ angular.module('app',['ngRoute','ngAnimate'])
 	.controller('capitalCtrl',['$scope','$http', '$routeParams', '$rootScope', function($scope, $http, $routeParams, $rootScope){
 		//http for neighbors and capital
 		$scope.country = $routeParams.country;
-		//$scope.capital = $routeParams.capital;
 
 		$http.get('http://api.geonames.org/countryInfoJSON?country=' + $scope.country + '&username=gvanburen')
 		.success(function(results){
 			console.log(results);
 			$scope.selectedCountry = results.geonames[0];
-			//Find a way to get all information
-			//Possibly use the original API for just the specific country
 			$http.get('http://api.geonames.org/searchJSON?q=' + $scope.selectedCountry.capital + '&countryBias=' + $scope.country + '&orderby=relavance&maxRows=1&username=gvanburen')
 			.success(function(searchData){
-				//$scope.countryCode = searchData.geonames[0].countryCode;
 				$scope.capitalPop = searchData.geonames[0].population;
 				$http.get('http://api.geonames.org/neighboursJSON?country=' + $scope.country + '&username=gvanburen')
 					.success(function(helloNeighbor){
