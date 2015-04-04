@@ -29,6 +29,9 @@ angular.module('app',['ngRoute','ngAnimate'])
 		.error(function(){
 			$location.path('/error')
 		})
+		$scope.go = function(url){
+			$location.path('/countries/' + url)
+		}
 	}])
 	.controller('capitalCtrl',['$scope','$http', '$routeParams', '$rootScope', function($scope, $http, $routeParams, $rootScope){
 		//http for neighbors and capital

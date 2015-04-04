@@ -8,14 +8,16 @@
 		<th>Population</th>
 		<th>Continent</th>
 	</tr>
-	<tr ng-repeat="country in countries" ng-click="countryPopulation=country.population; countryArea=country.areaInSqKm">
-		<td><a ng-href="./#/countries/{{country.countryCode}}">{{ country.countryName }}</a></td>
-		<td><a ng-href="./#/countries/{{country.countryCode}}">{{ country.countryCode }}</a></td>
-		<td><a ng-href="./#/countries/{{country.countryCode}}">{{ country.capital }}</a></td>
-		<td><a ng-href="./#/countries/{{country.countryCode}}">{{ country.areaInSqKm | number }}</a></td>
-		<td><a ng-href="./#/countries/{{country.countryCode}}">{{ country.population | number }}</a></td>
-		<td><a ng-href="./#/countries/{{country.countryCode}}">{{ country.continentName }}</a></td>
+	<tr ng-repeat="country in countries" ng-click='go(country.countryCode)'>
+		<td>{{ country.countryName }}</td>
+		<td>{{ country.countryCode }}</td>
+		<td>{{ country.capital }}</td>
+		<td>{{ country.areaInSqKm | number }}</td>
+		<td>{{ country.population | number }}</td>
+		<td>{{ country.continentName }}</td>
 	</tr>
 </table>
 </section>
+<section class="footer">
 <a href="#/"><button class="ghost-button">Home</button></a>
+</section>
